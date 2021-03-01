@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect
-from .forms import SignUpForm, LoginForm
+from .forms import SignUpForm, LoginForm, PostForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .models import Post
@@ -60,3 +60,24 @@ def user_login(request):
         return render(request, 'blog/login.html', {'form':form})
     else:
         return HttpResponseRedirect('/dashboard/')
+
+# Add New Post
+def add_post(request):
+    if request.user.is_authenticated:
+        return render (request, 'blog/addpost.html')
+    else:
+        return HttpResponseRedirect('/login/')
+
+# Update Post
+def update_post(request, id):
+    if request.user.is_authenticated:
+        return render (request, 'blog/updatepost.html')
+    else:
+        return HttpResponseRedirect('/login/')
+
+# Delete Post
+def delete_post(request, id):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/dasboard/')
+    else:
+        return HttpResponseRedirect('/login/')
