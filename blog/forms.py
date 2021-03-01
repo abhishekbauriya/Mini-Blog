@@ -24,7 +24,7 @@ class LoginForm(AuthenticationForm):
     password = forms.CharField(label=_("Password"), strip=False, widget=forms.PasswordInput(attrs={'autocomplete': 'current-password', 'class':'form-control'}))
 
 class PostForm(forms.ModelForm):
-     class Meta:
+    class Meta:
          model = Post
          fields = ['title', 'desc']
          labels = {'title':'Title', 'desc':'Description'}
